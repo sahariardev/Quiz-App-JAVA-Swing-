@@ -1,11 +1,14 @@
 package com.rifat.views;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.rifat.domain.Question;
@@ -20,6 +23,7 @@ public class quizcontainer extends JFrame {
 	private int totalScore;
 	private int questionCounter;
 	private int maxQuestion;
+	private JLabel label;
 
 	
 	
@@ -47,6 +51,7 @@ public class quizcontainer extends JFrame {
 	public quizcontainer()  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 100, 588, 434);
+		label=new JLabel();
 		
 	
 		
@@ -112,6 +117,12 @@ public class quizcontainer extends JFrame {
 				{
 					System.out.println("Done with Quiz. Total Score is ::  "+totalScore);
 					btnNext.setVisible(false);
+					label.setText("Total Score is ::  "+totalScore);
+					label.setForeground(new Color(0, 204, 204));
+					label.setFont(new Font("Segoe UI Historic", Font.PLAIN, 20));
+					label.setBounds(58, 66, 313, 42);
+					//label.setBounds(100,100 ,200,200);
+					add(label);
 				}
 				
 				
