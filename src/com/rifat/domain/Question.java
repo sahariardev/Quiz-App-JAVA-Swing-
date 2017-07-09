@@ -17,6 +17,11 @@ public class Question {
 		this.option4 = option4;
 		this.rightAnswer = rightAnswer;
 	}
+	@Override
+	public String toString() {
+		return "Question [question=" + question + ", option1=" + option1 + ", option2=" + option2 + ", option3="
+				+ option3 + ", option4=" + option4 + ", rightAnswer=" + rightAnswer + "]";
+	}
 	public String getQuestion() {
 		return question;
 	}

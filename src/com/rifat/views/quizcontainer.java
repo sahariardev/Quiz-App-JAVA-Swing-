@@ -1,20 +1,25 @@
 package com.rifat.views;
 
 import java.awt.EventQueue;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.rifat.domain.Question;
+import com.rifat.io.QuestionGenerator;
 import com.rifat.views.components.QuestionPane;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
 
 public class quizcontainer extends JFrame {
 
 	private JPanel contentPane;
 	private QuestionPane currentQuestion;
+	private Question[] qBank;
+	private int totalScore;
+	private int questionCounter;
+	private int maxQuestion;
 
 	
 	
@@ -43,22 +48,18 @@ public class quizcontainer extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500, 100, 588, 434);
 		
-		
 	
-		//setLayout(null);
-
-		Question q1=new Question("1. What is the capital of Bangladesh ?","Dhaka","Chittagong","Narayangonj","Barisal","Dhaka");
 		
-		Question q2=new Question("2. What is the capital of Nepal ?","Kathmandu","Tansen","Itahari","Ghorahi","Kathmudnu");
+		QuestionGenerator qg=new QuestionGenerator();
+		qBank=qg.generate();
 		
 		
 		
-		
-		currentQuestion=new QuestionPane(q1);
+		currentQuestion=new QuestionPane(qBank[0]);
 		currentQuestion.setBounds(0, 0, 572, 223);
 		
-		
-
+		questionCounter=1;		
+		maxQuestion=10;
 		
 		 
 	
@@ -82,7 +83,15 @@ public class quizcontainer extends JFrame {
 				
 			
 				
-				System.out.println(currentQuestion.selectedRadiobtnText());
+				
+				if(currentQuestion.isAnswerCorrect())
+				{
+					
+					totalScore++;
+					System.out.println(totalScore);
+				}
+				
+				
 				
 			/*
 				
@@ -93,15 +102,26 @@ public class quizcontainer extends JFrame {
 				add(q2);
 				*/
 				currentQuestion.setVisible(false);
-				currentQuestion=nextQuestion(q2);
+				if(questionCounter<maxQuestion)
+				{
+				
+				currentQuestion=nextQuestion(qBank[questionCounter]);
+				questionCounter++;
+				}
+				else
+				{
+					System.out.println("Done with Quiz. Total Score is ::  "+totalScore);
+					btnNext.setVisible(false);
+				}
+				
 				
 				jf.revalidate();
 				jf.repaint();
-				System.out.println("here I am");
+				//System.out.println("here I am");
 			}});
 		
 		
-		
+			
 	}
 	
 	public QuestionPane nextQuestion(Question q)
@@ -111,7 +131,7 @@ public class quizcontainer extends JFrame {
 		q2.setVisible(true);
 		q2.setBounds(0, 0, 572, 223);
 		add(q2);
-		System.out.println("here at the methods section");
+		//System.out.println("here at the methods section");
 		return q2;
 		
 	}

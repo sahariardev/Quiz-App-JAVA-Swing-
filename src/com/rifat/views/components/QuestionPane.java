@@ -106,26 +106,40 @@ public class QuestionPane extends JPanel {
          
          
     }
-    public String selectedRadiobtnText()
+    public boolean isAnswerCorrect()
     {
     	String text;
+    	boolean flag=false;
     	
     	try
     	{
-    	text=btnGrp.getSelection().getActionCommand();
-    	if(text.equals(q.getRightAnswer()))
-    	{
-    		text="right";
-    	}
-    	else
-    	{
-    		text="wrong";
-    	}
+    	   text=btnGrp.getSelection().getActionCommand().trim();
+    	   
+    	   String answer=q.getRightAnswer().trim();
+    	 
+    	
+          if(text.equals(answer))
+    	  {
+    		
+    		  
+    		  flag=true;
+    	  }
+    	  else
+    		{
+    		
+    		flag=false;
+    		}
+    	   return flag;
     	}
     	catch(Exception e)
     	{
-    		text="Not answered";
+    		flag=false;
     	}
-    	return text;
+    	
+    	return flag;
+    }
+    public String getAnswer()
+    {
+    	return q.getRightAnswer();
     }
 }
