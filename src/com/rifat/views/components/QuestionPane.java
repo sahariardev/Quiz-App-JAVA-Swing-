@@ -7,12 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle;
 
+import com.rifat.domain.Question;
+
 public class QuestionPane extends JPanel {
 
 
 
     private JLabel jLabel3;
-    String arr[];
+    Question q;
 
    
 
@@ -26,10 +28,10 @@ public class QuestionPane extends JPanel {
 
     // End of variables declaration                  
 	
-    public QuestionPane(String arr[])
+    public QuestionPane(Question q)
     {
     
-    	this.arr=arr;
+    	this.q=q;
          jLabel3 = new javax.swing.JLabel();
   
          jRadioButton1 = new JRadioButton();
@@ -41,23 +43,23 @@ public class QuestionPane extends JPanel {
 
         
 
-         jLabel3.setText(arr[0]);
+         jLabel3.setText(q.getQuestion());
 
 
          
 
-         jRadioButton1.setText(arr[1]);
-         jRadioButton1.setActionCommand(arr[1]);
+         jRadioButton1.setText(q.getOption1());
+         jRadioButton1.setActionCommand(q.getOption1());
          
 
-         jRadioButton2.setText(arr[2]);
-         jRadioButton2.setActionCommand(arr[2]);
+         jRadioButton2.setText(q.getOption2());
+         jRadioButton2.setActionCommand(q.getOption2());
 
-         jRadioButton3.setText(arr[3]);
-         jRadioButton3.setActionCommand(arr[3]);
+         jRadioButton3.setText(q.getOption3());
+         jRadioButton3.setActionCommand(q.getOption3());
 
-         jRadioButton4.setText(arr[4]);
-         jRadioButton4.setActionCommand(arr[4]);
+         jRadioButton4.setText(q.getOption4());
+         jRadioButton4.setActionCommand(q.getOption4());
          
          btnGrp=new ButtonGroup();	
          btnGrp.add(jRadioButton1);
@@ -111,7 +113,7 @@ public class QuestionPane extends JPanel {
     	try
     	{
     	text=btnGrp.getSelection().getActionCommand();
-    	if(text.equals(arr[5]))
+    	if(text.equals(q.getRightAnswer()))
     	{
     		text="right";
     	}

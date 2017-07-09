@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.rifat.domain.Question;
 import com.rifat.views.components.QuestionPane;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
@@ -45,12 +46,15 @@ public class quizcontainer extends JFrame {
 		
 	
 		//setLayout(null);
-		String arr[]={"1. What is the capital of Bangladesh ?","Dhaka","Chittagong","Narayangonj","Barisal","Dhaka"};
-		String arr2[]={"2. What is the capital of Nepal ?","Kathmandu","Tansen","Itahari","Ghorahi","Kathmudnu"};
+
+		Question q1=new Question("1. What is the capital of Bangladesh ?","Dhaka","Chittagong","Narayangonj","Barisal","Dhaka");
+		
+		Question q2=new Question("2. What is the capital of Nepal ?","Kathmandu","Tansen","Itahari","Ghorahi","Kathmudnu");
 		
 		
 		
-		currentQuestion=new QuestionPane(arr);
+		
+		currentQuestion=new QuestionPane(q1);
 		currentQuestion.setBounds(0, 0, 572, 223);
 		
 		
@@ -89,7 +93,7 @@ public class quizcontainer extends JFrame {
 				add(q2);
 				*/
 				currentQuestion.setVisible(false);
-				currentQuestion=nextQuestion(arr2);
+				currentQuestion=nextQuestion(q2);
 				
 				jf.revalidate();
 				jf.repaint();
@@ -100,10 +104,10 @@ public class quizcontainer extends JFrame {
 		
 	}
 	
-	public QuestionPane nextQuestion( String arr2[])
+	public QuestionPane nextQuestion(Question q)
 	{
 		
-		QuestionPane q2=new QuestionPane(arr2);
+		QuestionPane q2=new QuestionPane(q);
 		q2.setVisible(true);
 		q2.setBounds(0, 0, 572, 223);
 		add(q2);
